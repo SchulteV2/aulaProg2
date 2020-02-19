@@ -7,6 +7,7 @@
     $db_password = "coringa";
 
     $con = new PDO("mysql:host=$host; dbname=$db", $db_user, $db_password);
+    
 
     if($con) {
         echo "Conectado!";
