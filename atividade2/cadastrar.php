@@ -4,7 +4,8 @@
     $host = "localhost";
     $db = "cadastro";
     $db_user = "root";
-    $db_password = "coringa";
+    $db_password = "root";
+    // $db_password = "coringa";
 
     $con = new PDO("mysql:host=$host; dbname=$db", $db_user, $db_password);
 
@@ -19,6 +20,7 @@
     $stmt->bindParam(':senha', $user['password']);
     $stmt->bindParam(':data_nascimento', $user['data_nascimento']);
 
+    $rs = $con->query("SELECT id, nome, cpf, rg, endereco, email, senha, data_nascimento FROM users");
     $stmt->execute();
 ?>
 
@@ -79,9 +81,21 @@
             </div>
         
             <div class="col-md-12">
-                <?php foreach ($user as $attr) :?>
+                <!--<?php foreach ($user as $attr) :?>
                     <p><?= $attr ?></p>
-                <?php endforeach ?>
+                <?php endforeach ?>-->
+                <?php 
+                    while($row = $rs->fetch(PDO::FETCH_OBJ)) {
+                        echo "ID de cadastro: " . $row->id . "<br />";
+                        echo "Nome: " . $row->nome . "<br />";
+                        echo "CPF: " . $row->cpf . "<br />";
+                        echo "RG: " . $row->rg . "<br />";
+                        echo "Endereço" . $row->endereco . "<br />";
+                        echo "Email: " . $row->email . "<br />";
+                        echo "Senha: " . $row->senha . "<br />";
+                        echo "Data de nascimento: " . $row->data_nascimento . "<br /><br /><br />";
+                    }
+                ?>
 
             </div>
 
