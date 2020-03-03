@@ -4,8 +4,8 @@
     $host = "localhost";
     $db = "cadastro";
     $db_user = "root";
-    $db_password = "root";
-    // $db_password = "coringa";
+    // $db_password = "root";
+    $db_password = "coringa";
 
     $con = new PDO("mysql:host=$host; dbname=$db", $db_user, $db_password);
 
