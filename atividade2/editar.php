@@ -1,4 +1,6 @@
 <?php
+    $id = $_GET['id'];
+
     $host = "localhost";
     $db = "cadastro";
     $db_user = "root";
@@ -8,10 +10,12 @@
                     $db_user, 
                     $db_password);
 
-    $stmt = $con->prepare("SELECT * FROM users");
+    $stmt = $con->prepare("SELECT * FROM users WHERE id=:id");
+    $stmt->bindParam(":id", $id);
     $stmt->execute();
-?>
 
+    $row = $stmt->fetch(PDO::FETCH_OBJ);
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -64,42 +68,69 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 mt-4">
-                <h1>
-                    Cadastro
-
-                    <a href="formulario.php" class="btn btn-success float-right">Novo Usuário</a>
-                </h1>
+                <h1>Formulário de Cadastro</h1>
                 <hr />
             </div>
         
-            <div class="col-md-12">
-                <table class="table table-bordered">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>CPF</th>
-                        <th>RG</th>
-                        <th>Endereço</th>
-                        <th>E-mail</th>
-                        <th>Data Nasc.</th>
-                        <th>Ações</th>
-                    </tr>
-                    <?php while($row = $stmt->fetch(PDO::FETCH_OBJ)) : ?>
-                        <tr>
-                            <td><?= $row->id ?></td>
-                            <td><?= $row->nome ?></td>
-                            <td><?= $row->cpf ?></td>
-                            <td><?= $row->rg ?></td>
-                            <td><?= $row->endereco ?></td>
-                            <td><?= $row->email ?></td>
-                            <td><?= $row->data_nascimento ?></td>
-                            <td>
-                                <a href="editar.php?id=<?= $row->id ?>" class="btn btn-small btn-warning">Editar</a>
-                            </td>                   
-                        </tr>
-                    <?php endwhile ?>
-                </table>
-            </div>
+
+            <form action="atualizar.php" method="POST">
+
+                <input type="hidden" name="user[id]" value="<?= $row->id ?>">
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail3" class="col-sm-6 col-form-label">Email:</label>
+                        <div class="col-sm-12">
+                            <input type="email" class="form-control" id="inputEmail" name="user[email]" value="<?= $row->email ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="nome" class="col-sm-6 col-form-label">Nome Completo:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="nome" name="user[nome_completo]"  value="<?= $row->nome ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="cpf" class="col-sm-6 col-form-label">CPF:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="cpf" name="user[cpf]" value="<?= $row->cpf ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="rg" class="col-sm-6 col-form-label">RG:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="rg" name="user[rg]"  value="<?= $row->rg ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="data_nascimento" class="col-sm-6 col-form-label">Data Nascimento:</label>
+                        <div class="col-sm-12">
+                            <input type="date" class="form-control" id="data_nascimento" name="user[data_nascimento]"  value="<?= $row->data_nasc ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label for="endereco" class="col-sm-12 col-form-label">Endereço:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="endereco" name="user[endereco]" value="<?= $row->endereco ?>">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-md-12">
+                        <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+
+            </form>
+        
         </div>      
     </div>
     
