@@ -95,7 +95,8 @@
                             <td><?= $row->data_nascimento ?></td>
                             <td>
                                 <a href="editar.php?id=<?= $row->id ?>" class="btn btn-small btn-warning">Editar</a>
-                            </td>                   
+                                <a href="deletar.php?id=<?= $row->id ?>" class="btn btn-small btn-danger">Deletar</a>
+                            </td>              
                         </tr>
                     <?php endwhile ?>
                 </table>

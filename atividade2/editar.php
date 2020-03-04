@@ -109,7 +109,7 @@
                     <div class="form-group col-md-6">
                         <label for="data_nascimento" class="col-sm-6 col-form-label">Data Nascimento:</label>
                         <div class="col-sm-12">
-                            <input type="date" class="form-control" id="data_nascimento" name="user[data_nascimento]"  value="<?= $row->data_nasc ?>">
+                            <input type="date" class="form-control" id="data_nascimento" name="user[data_nascimento]"  value="<?= $row->data_nascimento ?>">
                         </div>
                     </div>
 
