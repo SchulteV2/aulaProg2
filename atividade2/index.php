@@ -1,12 +1,7 @@
 <?php
-    $host = "localhost";
-    $db = "cadastro";
-    $db_user = "root";
-    $db_password = "coringa";
+  require_once('src/utils/ConnectionFactory.php');
 
-    $con = new PDO("mysql:host=$host;dbname=$db", 
-                    $db_user, 
-                    $db_password);
+  $con = ConnectionFactory::getConnection();
 
     $stmt = $con->prepare("SELECT * FROM users");
     $stmt->execute();
@@ -81,7 +76,7 @@
                             <td><?= $row->data_nascimento ?></td>
                             <td>
                                 <a href="editar.php?id=<?= $row->id ?>" class="btn btn-small btn-warning">Editar</a>
-                                <a href="deletar.php?id=<?= $row->id ?>" class="btn btn-small btn-danger">Deletar</a>
+                                <a href="deletar.php?id=<?= $row->id ?>" class="btn btn-small btn-danger" onclick="return confirm('Deseja Realmente Deletar?')">Deletar</a>
                             </td>              
                         </tr>
                     <?php endwhile ?>

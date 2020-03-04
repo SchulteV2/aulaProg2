@@ -1,14 +1,9 @@
 <?php
+    require_once('src/utils/ConnectionFactory.php');
+
     $id = $_GET['id'];
 
-    $host = "localhost";
-    $db = "cadastro";
-    $db_user = "root";
-    $db_password = "coringa";
-
-    $con = new PDO("mysql:host=$host;dbname=$db", 
-                    $db_user, 
-                    $db_password);
+    $con = ConnectionFactory::getConnection();
 
     $stmt = $con->prepare("SELECT * FROM users WHERE id=:id");
     $stmt->bindParam(":id", $id);
@@ -23,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="css/bootstrap-reboot.css" />
+    <link rel="stylesheet" href="css/bootstrap-reboot.css"/>
     <link rel="stylesheet" href="css/bootstrap-grid.css" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/style.css" />

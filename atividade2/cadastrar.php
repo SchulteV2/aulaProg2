@@ -1,16 +1,9 @@
 <?php
+    require_once('src/utils/ConnectionFactory.php');
+
     $user = $_REQUEST['user'];
 
-    $host = "localhost";
-    $db = "cadastro";
-    $db_user = "root";
-    $db_password = "coringa";
-
-    $con = new PDO("mysql:host=$host;dbname=$db", 
-                    $db_user, 
-                    $db_password);
-
-
+    $con = ConnectionFactory::getConnection();
 
     $stmt = $con->prepare("INSERT INTO users(nome, cpf, rg, endereco, email, senha, data_nascimento) 
                            VALUES (:nome, :cpf, :rg, :endereco, :email, :senha, :data_nascimento)");
