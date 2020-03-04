@@ -17,7 +17,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Formulário de Edição</title>
     <link rel="stylesheet" href="css/bootstrap-reboot.css"/>
     <link rel="stylesheet" href="css/bootstrap-grid.css" />
     <link rel="stylesheet" href="css/bootstrap.css" />
@@ -103,7 +103,7 @@
                     
                     <div class="form-group col-md-12">
                         <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
                         </div>
                     </div>
                     
