@@ -1,7 +1,7 @@
 <?php
-  require_once('src/utils/ConnectionFactory.php');
+    require_once('src/utils/ConnectionFactory.php');
 
-  $con = ConnectionFactory::getConnection();
+    $con = ConnectionFactory::getConnection();
 
     $stmt = $con->prepare("SELECT * FROM users");
     $stmt->execute();

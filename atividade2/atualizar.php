@@ -1,9 +1,9 @@
 <?php
     require_once('src/utils/ConnectionFactory.php');
 
-    $user = $_REQUEST['user'];
-
     $con = ConnectionFactory::getConnection();
+
+    $user = $_REQUEST['user'];
 
     $stmt = $con->prepare("UPDATE users SET nome=:nome, cpf=:cpf, rg=:rg, endereco=:endereco, email=:email, senha=:senha, data_nascimento=:data_nascimento WHERE id=:id");
 
