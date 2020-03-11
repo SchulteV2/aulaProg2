@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -22,16 +25,12 @@
             <li class="nav-item active">
                 <a class="nav-link" href="index.php">Dados <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="login.php">Login <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <?php if($_SESSION['logado']) : ?>
+                <a href="/sign_out.php" class="btn btn-warning">Sair</a>
+                <?php else : ?>
+                <a href="/sign_in.php" class="btn btn-success">Logar</a>
+            <?php endif ?>
             </form>
         </div>
     </nav>
@@ -47,16 +46,16 @@
             <form action="cadastrar.php" method="POST">
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputEmail3" class="col-sm-6 col-form-label">Email:</label>
+                        <label for="email" class="col-sm-6 col-form-label">Email:</label>
                         <div class="col-sm-12">
-                            <input type="email" class="form-control" id="inputEmail" name="user[email]" value="manfe01@gmail.com">
+                            <input type="email" class="form-control" id="email" name="user[email]" value="manfe01@gmail.com">
                         </div>
                     </div>
 
                     <div class="form-group col-md-6">
-                        <label for="inputPassword3" class="col-sm-6 col-form-label">Password:</label>
+                        <label for="password" class="col-sm-6 col-form-label">Password:</label>
                         <div class="col-sm-12">
-                        <input type="password" class="form-control" id="inputPassword3" name="user[password]" value="123456">
+                        <input type="password" class="form-control" id="password" name="user[password]" value="123456">
                         </div>
                     </div>
 

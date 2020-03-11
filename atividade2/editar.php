@@ -1,4 +1,17 @@
 <?php
+    session_start();
+
+    if(! $_SESSION['logado']) {
+        $_SESSION['flash']['error'] = "Você precisa estar logado para executar essa ação.";
+        header("Location: sign_in.php");
+        exit(0);
+    }
+    if(isset($_SESSION['flash'])) {
+        $error = $_SESSION['flash']['error'];
+        $message = $_SESSION['flash'];
+        unset($_SESSION['flash']);       
+    }
+
     require_once('src/utils/ConnectionFactory.php');
 
     $con = ConnectionFactory::getConnection();
@@ -35,16 +48,8 @@
             <li class="nav-item active">
                 <a class="nav-link" href="index.php">Dados <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="login.php">Login <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <a href="/sign_out.php" class="btn btn-warning">Sair</a>
             </form>
         </div>
     </nav>
@@ -52,6 +57,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 mt-4">
+                <?php if($error) : ?>
+                    <p class="alert alert-danger"><?= $error ?></p>
+                <?php endif ?>
+                <?php if($message) : ?>
+                    <p class="alert alert-sucess"><?= $message ?></p>
+                <?php endif ?>
                 <h1>Formulário de Edição</h1>
                 <hr />
             </div>
@@ -63,9 +74,9 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputEmail3" class="col-sm-6 col-form-label">Email:</label>
+                        <label for="email" class="col-sm-6 col-form-label">Email:</label>
                         <div class="col-sm-12">
-                            <input type="email" class="form-control" id="inputEmail" name="user[email]" value="<?= $row->email ?>">
+                            <input type="email" class="form-control" id="email" name="user[email]" value="<?= $row->email ?>">
                         </div>
                     </div>
 
