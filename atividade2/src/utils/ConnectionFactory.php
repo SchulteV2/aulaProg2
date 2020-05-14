@@ -3,8 +3,8 @@
         private static $host = "localhost";
         private static $db = "cadastro";
         private static $db_user = "root";
-        private static $db_password = "coringa";
-        // private static $db_password = "root";
+        // private static $db_password = "coringa";
+        private static $db_password = "root";
 
         private static $con = null;
 

@@ -1,0 +1,17 @@
+body {
+  box-sizing: border-box;
+}
+
+header {
+  background-color: #657ae6;
+  width: 100%;
+}
+
+#produtos img {
+  margin-top: 20px;
+  width: 100%;
+}
+
+p {
+  font-size: 0.8rem;
+}
